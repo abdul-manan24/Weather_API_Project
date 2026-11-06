@@ -1,4 +1,5 @@
 import requests
+import os
 
 def get_weather_data(api_key, location, start_date=None, end_date=None):
 
@@ -31,7 +32,7 @@ def get_weather_data(api_key, location, start_date=None, end_date=None):
     except Exception as err:
         print(f"Error occurred: {err}")
 
-API_Key = "RFQ3B5P7QC78XW9VXDX7ZMS56"
+API_Key = os.environ.get('Visual_Crossing_API_Key')
 Location = input("Enter Location: ")
 
 data = get_weather_data(API_Key, Location)
@@ -41,3 +42,4 @@ if data:
     current_conditions = data.get('currentConditions', {})
     print(f"Current Temp: {current_conditions.get('temp')}°C")
     print(f"Conditions: {current_conditions.get('conditions')}")
+    print(API_Key)
